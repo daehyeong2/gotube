@@ -1,0 +1,13 @@
+extends base
+
+block content 
+    form(method="POST")
+        h4 Email
+        input(name="email", type="email", value=loggedInUser.email)
+        h4 Username
+        input(name="username", value=loggedInUser.username)
+        h4 Name
+        input(name="name", value=loggedInUser.name)
+        h4 location
+        input(name="location", value=loggedInUser.location)
+        input(type="submit", value="Update Profile")

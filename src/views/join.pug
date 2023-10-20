@@ -1,0 +1,23 @@
+extends base
+
+block content 
+    form(method="POST")
+        h4 Email
+        input(type="email", required, name="email")
+        h4 Username
+        input(type="text", required, name="username")
+        h4 Password
+        input(type="password", required, name="password")
+        h4 Confirm Password
+        input(type="password", required, name="confirmPassword")
+        h4 Name
+        input(type="text", name="name")
+        h4 Location
+        input(type="text", name="location")
+        if errorMessage 
+            h3=errorMessage
+        input(type="submit", value="Join")
+    hr
+    div 
+        span Alreday have an account? 
+        a(href="/login") Click here! &rarr;
