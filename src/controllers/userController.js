@@ -47,14 +47,12 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
   const {
     session: {
-      user: { _id },
+      user: { _id, email: beforeEmail, username: beforeUsername },
     },
     body: { email, username, name, location },
   } = req;
   const pageTitle = "Edit Profile";
 
-  const beforeEmail = req.session.user.email;
-  const beforeUsername = req.session.user.username;
   if (beforeEmail != email && (await User.exists({ email }))) {
     return res.status(400).render("edit-profile", {
       pageTitle,
