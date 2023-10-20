@@ -10,4 +10,6 @@ block content
         input(name="name", value=loggedInUser.name)
         h4 location
         input(name="location", value=loggedInUser.location)
+        if errorMessage 
+            h3=errorMessage
         input(type="submit", value="Update Profile")
