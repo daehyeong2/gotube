@@ -5,22 +5,24 @@ const videoSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    minLength: 3,
     maxLength: 80,
+  },
+  videoUrl: {
+    type: String,
+    required: true,
   },
   description: {
     type: String,
     required: true,
     trim: true,
-    minLength: 5,
     maxLength: 500,
   },
   createdAt: { type: Date, required: true, default: Date.now },
   hashtags: [{ type: String, trim: true }],
   meta: {
     views: { type: Number, default: 0, required: true },
-    rating: { type: Number, default: 0, required: true },
   },
+  owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
 });
 
 videoSchema.static("formatHashtags", function (hashtags) {
