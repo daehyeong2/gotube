@@ -52,9 +52,12 @@
       opacity: 1;
     }
   }
-}
-i {
-  font-size: 18px;
+  i {
+    font-size: 18px;
+    &:hover {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
 }
 #data {
   height: 200px;

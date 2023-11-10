@@ -1,0 +1,31 @@
+#recorder {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  #preview {
+    width: 600px;
+    height: 400px;
+    object-fit: fill;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: lightgrey;
+  }
+  #actionBtn {
+    margin-top: 25px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: white;
+    color: tomato;
+    cursor: pointer;
+    &[disabled] {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      cursor: not-allowed;
+    }
+  }
+}

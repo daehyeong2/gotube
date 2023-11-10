@@ -1,0 +1,13 @@
+mixin comment(comment)
+    li(data-id=comment.id).video__comment
+        div.video__comment-left
+            a(href=`/users/${comment.owner._id}`)
+                if !comment.owner.avatarUrl
+                                    img(src="/uploads/avatars/defaultImage").video__comment-avatar
+                else 
+                    img(src=comment.owner.avatarUrl.startsWith("https://") ? comment.owner.avatarUrl : `/${comment.owner.avatarUrl}`).video__comment-avatar
+        div.video__comment-right
+            a(href=`/users/${comment.owner._id}`).video__comment-name=comment.owner.name
+            p.video__comment-text=comment.text 
+            if comment.owner._id == loggedInUser._id
+                i.video__comment-delete.fas.fa-trash

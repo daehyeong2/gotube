@@ -40,6 +40,7 @@ export const postJoin = async (req, res) => {
       errorMessage: error._message,
     });
   }
+  req.flash("info", `User Created`);
   return res.redirect("/login");
 };
 export const getEdit = (req, res) => {
@@ -79,6 +80,7 @@ export const postEdit = async (req, res) => {
     { new: true }
   );
   req.session.user = updatedUser;
+  req.flash("success", `User Updated`);
   return res.redirect("/users/edit");
 };
 export const getLogin = (req, res) =>
@@ -102,6 +104,7 @@ export const postLogin = async (req, res) => {
   }
   req.session.loggedIn = true;
   req.session.user = user;
+  req.flash("info", `Hello! ${user.name}`);
   return res.redirect("/");
 };
 export const logout = (req, res) => {
@@ -172,14 +175,17 @@ export const finishGithubLogin = async (req, res) => {
     }
     req.session.loggedIn = true;
     req.session.user = user;
+    req.flash("info", `Hello! ${user.name}`);
     return res.redirect("/");
   } else {
+    req.flash("error", `Login failed`);
     return res.redirect("/login");
   }
 };
 
 export const getChangePassword = (req, res) => {
   if (req.session.user.socialOnly == true) {
+    req.flash("error", "Not authorized");
     return res.redirect("/");
   }
   return res.render("users/change-password", { pageTitle: "Change Password" });
@@ -207,13 +213,17 @@ export const postChangePassword = async (req, res) => {
   }
   user.password = newPassword;
   await user.save();
-  return res.redirect("/users/logout");
+  req.flash("info", `Password Updated`);
+  return res.redirect("/");
 };
 
 export const see = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id).populate({
     path: "videos",
+    options: {
+      sort: { createdAt: "desc" },
+    },
     populate: {
       path: "owner",
       model: "User",

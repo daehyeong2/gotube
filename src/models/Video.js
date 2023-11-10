@@ -11,6 +11,10 @@ const videoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  thumbUrl: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
@@ -22,6 +26,7 @@ const videoSchema = new mongoose.Schema({
   meta: {
     views: { type: Number, default: 0, required: true },
   },
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
   owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
 });
 
@@ -29,6 +34,9 @@ videoSchema.static("formatHashtags", function (hashtags) {
   return hashtags
     .split(",")
     .map((word) => (word.startsWith("#") ? word : `#${word}`));
+});
+videoSchema.static("changePathFormula", (urlPath) => {
+  return urlPath.replace(/\\/g, "/");
 });
 
 const Video = mongoose.model("Video", videoSchema);

@@ -1,7 +1,8 @@
 extends ../base
+include ../mixins/comment
 
 block content
-    div#videoContainer
+    div#videoContainer(data-id=video._id)
         video(src=`/${video.videoUrl}`)
         div#videoControls
             div#timelineBox
@@ -30,5 +31,17 @@ block content
             div#permission
                 a(href=`${video.id}/edit`) Edit Video &rarr;
                 a(href=`${video.id}/delete`) Delete Video &rarr;
+    if loggedIn
+        div.video__add-comments 
+            form(data-name=loggedInUser.name, data-url=loggedInUser.avatarUrl, data-id=loggedInUser._id).video__comment-form#commentForm
+                input(cols="30", rows="10", placeholder="Write a Comment.", required)
+                button
+                    i.far.fa-paper-plane
+    div.video__comments
+        ul
+            each comment in video.comments.reverse()
+                +comment(comment)
+
 block scripts
     script(src="/static/js/videoPlayer.js")
+    script(src="/static/js/commentSection.js")

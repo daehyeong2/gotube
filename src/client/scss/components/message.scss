@@ -1,0 +1,44 @@
+@keyframes messageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.message {
+  position: fixed;
+  z-index: 99;
+  right: 20px;
+  top: 80px;
+  margin: 0 auto;
+  color: white;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 15px 150px;
+  padding-left: 15px;
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  animation-delay: 0.1s;
+  animation: messageFadeIn 0.2s ease-in-out;
+  cursor: pointer;
+  &.error {
+    background-color: crimson;
+  }
+  &.info {
+    background-color: cornflowerblue;
+  }
+  &.success {
+    color: black;
+    background-color: aquamarine;
+  }
+}
+
+.hide {
+  opacity: 0;
+  transform: translateX(400px);
+}

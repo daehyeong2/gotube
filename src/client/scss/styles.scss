@@ -12,6 +12,8 @@
 @import "./components/forms.scss";
 @import "./components/social-login.scss";
 @import "./components/video-player.scss";
+@import "./components/video-recorder.scss";
+@import "./components/message.scss";
 
 // Screens
 
@@ -20,6 +22,7 @@
 @import "./screens/profile.scss";
 @import "./screens/edit-profile.scss";
 @import "./screens/change-password.scss";
+@import "./screens/watch.scss";
 
 // Defaults
 
@@ -43,6 +46,7 @@ body {
     sans-serif;
   background-color: $bg;
   color: white;
+  margin: 100px 0;
 }
 
 main {
