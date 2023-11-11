@@ -27,7 +27,7 @@ const handleDownload = async () => {
   actionBtn.innerText = "Transcoding..";
   actionBtn.disabled = true;
 
-  const ffmpeg = createFFmpeg({ log: true });
+  const ffmpeg = createFFmpeg();
   await ffmpeg.load();
 
   ffmpeg.FS("writeFile", files.input, await fetchFile(videoFile));
