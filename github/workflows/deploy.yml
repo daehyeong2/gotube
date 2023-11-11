@@ -1,0 +1,46 @@
+name: Deploy to cloudtype
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Connect deploy key
+        uses: cloudtype-github-actions/connect@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          ghtoken: ${{ secrets.GHP_TOKEN }}
+      - name: Deploy
+        uses: cloudtype-github-actions/deploy@v1
+        with:
+          token: ${{ secrets.CLOUDTYPE_TOKEN }}
+          project: daehyeong2010/gotube
+          stage: main
+          yaml: >
+            name: gotube
+
+            app: node@18
+
+            options:
+              env:
+                - name: NODE_ENV
+                  value: production
+                - name: COOKIE_SECRET
+                  value: 3ncADSfkndseSNFAn1320
+                - name: DB_URL
+                  value: mongodb+srv://baconbacon1231:kIjTiSsPAVYrjusf@cluster0.twut2gt.mongodb.net/?retryWrites=true&w=majority
+                - name: GITHUB_CLIENT_ID
+                  value: bdce38efe1b37ae09329
+                - name: GITHUB_SECRET
+                  value: f685f6d298aa2c403f56847fff6f85b2f7287f61
+              ports: "4000"
+              build: npm run build
+              start: npm start
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
