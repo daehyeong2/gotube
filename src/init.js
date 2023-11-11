@@ -8,7 +8,7 @@ import app from "./server";
 const PORT = 4000;
 
 function handleListening() {
-  console.log(`✅ Server listenting on port ${PORT} 🚀`);
+  console.log(`✅ Server listenting on PORT ${PORT} 🚀`);
 }
 
 app.listen(PORT, handleListening);
