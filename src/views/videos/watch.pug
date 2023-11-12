@@ -3,7 +3,7 @@ include ../mixins/comment
 
 block content
     div#videoContainer(data-id=video._id)
-        video(src=`/${video.videoUrl}`)
+        video(src=`${video.videoUrl}`, crossorigin)
         div#videoControls
             div#timelineBox
                 input(type="range", step="0.1", value="0", min="0")#timeline

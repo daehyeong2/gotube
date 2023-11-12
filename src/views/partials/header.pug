@@ -17,7 +17,7 @@ header
                         if !loggedInUser.avatarUrl
                             img(src="/uploads/avatars/defaultImage").header__avatar
                         else 
-                            img(src=loggedInUser.avatarUrl.startsWith("https://") ? loggedInUser.avatarUrl : `/${loggedInUser.avatarUrl}`).header__avatar
+                            img(src=loggedInUser.avatarUrl, crossorigin).header__avatar
                 li 
                     a(href="/users/logout") Log Out
             else

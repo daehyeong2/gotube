@@ -23,6 +23,9 @@
   "dependencies": {
     "@ffmpeg/core": "^0.8.5",
     "@ffmpeg/ffmpeg": "^0.9.7",
+    "aws-sdk": "~2.895.0",
+    "multer": "~1.4.2",
+    "multer-s3": "~2.9.0",
     "bcrypt": "^5.1.1",
     "connect-mongo": "^5.0.0",
     "dotenv": "^16.3.1",
@@ -31,7 +34,6 @@
     "express-session": "^1.17.3",
     "mongoose": "^7.5.3",
     "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
     "pug": "^3.0.2"
   },
   "devDependencies": {

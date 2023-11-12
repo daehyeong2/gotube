@@ -67,7 +67,6 @@ export const postEdit = async (req, res) => {
       errorMessage: "this username is already taken.",
     });
   }
-
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
@@ -75,7 +74,7 @@ export const postEdit = async (req, res) => {
       username,
       name,
       location,
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl: file ? file.location : avatarUrl,
     },
     { new: true }
   );

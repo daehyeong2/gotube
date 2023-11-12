@@ -96,7 +96,7 @@ const handleStart = () => {
   actionBtn.addEventListener("click", handleStop);
   setTimeout(() => {
     actionBtn.disabled = false;
-  }, 3500);
+  }, 1500);
 
   recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
   recorder.ondataavailable = (event) => {
@@ -109,7 +109,7 @@ const handleStart = () => {
   recorder.start();
   autoStopId = setTimeout(() => {
     handleStop();
-  }, 10000);
+  }, 5000);
 };
 
 const init = async () => {
