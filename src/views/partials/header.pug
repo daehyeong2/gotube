@@ -14,10 +14,7 @@ header
                     a(href="/users/edit") Edit Profile
                 li 
                     a(href=`/users/${loggedInUser._id}`)
-                        if !loggedInUser.avatarUrl
-                            img(src="/uploads/avatars/defaultImage").header__avatar
-                        else 
-                            img(src=loggedInUser.avatarUrl, crossorigin).header__avatar
+                        img(src=loggedInUser.avatarUrl, crossorigin).header__avatar
                 li 
                     a(href="/users/logout") Log Out
             else

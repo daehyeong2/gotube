@@ -82,11 +82,14 @@ export const postUpload = async (req, res) => {
     body: { title, description, hashtags },
   } = req;
   try {
+    const isCloudType = process.env.NODE_ENV;
     const newVideo = await Video.create({
       title,
       description,
-      videoUrl: video[0].location,
-      thumbUrl: Video.changePathFormula(thumb[0].location),
+      videoUrl: isCloudType ? video[0].location : "/" + video[0].path,
+      thumbUrl: Video.changePathFormula(
+        isCloudType ? thumb[0].location : "/" + thumb[0].path
+      ),
       hashtags: Video.formatHashtags(hashtags),
       owner: _id,
     });

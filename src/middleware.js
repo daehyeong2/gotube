@@ -9,16 +9,25 @@ const s3 = new aws.S3({
   },
 });
 
-const multerUploader = multerS3({
+const s3ImageUploader = multerS3({
   s3,
-  bucket: "gotubee",
+  bucket: "gotubee/images",
   acl: "public-read",
 });
+
+const s3VideoUploader = multerS3({
+  s3,
+  bucket: "gotubee/videos",
+  acl: "public-read",
+});
+
+const isCloudType = process.env.NODE_ENV === "production";
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.siteName = "Gotube";
   res.locals.loggedInUser = req.session.user || {};
+  res.locals.isCloudType = isCloudType;
   return next();
 };
 
@@ -45,7 +54,7 @@ export const avatarUpload = multer({
   limits: {
     fileSize: 1 * 1000 * 1000, // MB * 1000 * 1000
   },
-  storage: multerUploader,
+  storage: isCloudType ? s3ImageUploader : undefined,
 });
 
 export const videoUpload = multer({
@@ -53,5 +62,5 @@ export const videoUpload = multer({
   limits: {
     fileSize: 30 * 1000 * 1000, // MB * 1000 * 1000
   },
-  storage: multerUploader,
+  storage: isCloudType ? s3VideoUploader : undefined,
 });

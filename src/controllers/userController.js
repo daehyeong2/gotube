@@ -32,6 +32,8 @@ export const postJoin = async (req, res) => {
       username,
       email,
       password,
+      avatarUrl:
+        "https://gotubee.s3.ap-northeast-2.amazonaws.com/images/defaultImage.jpg",
       location,
     });
   } catch (error) {
@@ -67,6 +69,7 @@ export const postEdit = async (req, res) => {
       errorMessage: "this username is already taken.",
     });
   }
+  const isCloudType = process.env.NODE_ENV === "production";
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
@@ -74,7 +77,11 @@ export const postEdit = async (req, res) => {
       username,
       name,
       location,
-      avatarUrl: file ? file.location : avatarUrl,
+      avatarUrl: file
+        ? isCloudType
+          ? file.location
+          : "/" + file.path
+        : avatarUrl,
     },
     { new: true }
   );
