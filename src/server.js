@@ -17,8 +17,7 @@ app.set("views", process.cwd() + "/src/views");
 app.use((req, res, next) => {
   res.header("Cross-Origin-Embedder-Policy", "require-corp");
   res.header("Cross-Origin-Opener-Policy", "same-origin");
-  res.header("Cross-Origin-Resource-Polioy", "cross-origin");
-  res.header("Cross-Origin-Resource-Polioy", "same-site");
+  res.header("Cross-Origin-Resource-Policy", "cross-origin");
   next();
 });
 app.use(logger);
