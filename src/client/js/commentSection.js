@@ -16,6 +16,7 @@ const addComment = (text, commentId) => {
   avatarA.href = `/users/${id}`;
   const avatar = document.createElement("img");
   avatar.classList = "video__comment-avatar";
+  avatar.crossorigin = true;
   if (!url) {
     avatar.src = "/uploads/avatars/defaultImage";
   } else {
