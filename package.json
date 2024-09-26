@@ -23,7 +23,7 @@
   "dependencies": {
     "@ffmpeg/core": "^0.8.5",
     "@ffmpeg/ffmpeg": "^0.9.7",
-    "aws-sdk": "~2.895.0",
+    "aws-sdk": "~2.1691.0",
     "multer": "~1.4.2",
     "multer-s3": "~2.9.0",
     "bcrypt": "^5.1.1",
